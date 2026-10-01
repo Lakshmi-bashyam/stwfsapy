@@ -26,7 +26,7 @@ def test_array_input():
     pt = PassthroughTransformer()
     out_feat = pt.transform(in_feat)
     assert isinstance(out_feat, np.ndarray)
-    assert (sp.diags([[1, 7, -3]], [0]).toarray() == out_feat).all()
+    assert (sp.diags_array([[1, 7, -3]], offsets=[0], dtype=int).toarray() == out_feat).all()
 
 
 def test_sparse_input():
@@ -38,4 +38,4 @@ def test_sparse_input():
     pt = PassthroughTransformer()
     out_feat = pt.transform(in_feat)
     assert sp.issparse(out_feat)
-    assert (sp.diags([[1, 7, -3]], [0]).toarray() == out_feat.toarray()).all()
+    assert (sp.diags_array([[1, 7, -3]], offsets=[0], dtype=int).toarray() == out_feat.toarray()).all()

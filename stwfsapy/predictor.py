@@ -19,8 +19,8 @@ from stwfsapy.position_features import PositionFeatures
 from collections import defaultdict
 from typing import Dict, FrozenSet, List, Iterable, \
     Container, Tuple, TypeVar, Union
-from scipy.sparse import spmatrix
-from numpy import array
+from scipy.sparse import sparray, spmatrix
+from numpy import ndarray
 from logging import getLogger
 from rdflib.term import URIRef
 from rdflib import Graph
@@ -298,7 +298,7 @@ class StwfsapyPredictor(BaseEstimator, ClassifierMixin):
         :params  X: Iterable of input texts.
 
         Returns:
-            A sparse matrix of shape (n_samples, n_concepts) with concept match probabilities.
+            A sparse array of shape (n_samples, n_concepts) with concept match probabilities.
         """
         match_X, doc_counts = self.match_and_extend(X)
         if match_X:
@@ -351,7 +351,7 @@ class StwfsapyPredictor(BaseEstimator, ClassifierMixin):
         :params  X: Iterable of input strings.
 
         Returns:
-            A sparse matrix of shape (n_samples, n_concepts) indicating predicted concept matches.
+            A sparse array of shape (n_samples, n_concepts) indicating predicted concept matches.
         """
         match_X, doc_counts = self.match_and_extend(X)
         if match_X:
@@ -410,8 +410,8 @@ class StwfsapyPredictor(BaseEstimator, ClassifierMixin):
             truth_refss: Iterable[Container] = None
             ) -> Tuple[List[Tuple[
                 str,
-                spmatrix,
-                array,
+                ndarray,
+                Union[sparray, spmatrix, int],
                 int,
                 List[int], int]],
                 List[int]]:
