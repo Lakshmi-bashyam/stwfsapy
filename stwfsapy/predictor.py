@@ -295,7 +295,7 @@ class StwfsapyPredictor(BaseEstimator, ClassifierMixin):
         :params  X: Iterable of input texts.
 
         Returns:
-            A sparse array of shape (n_samples, n_concepts) 
+            A sparse array of shape (n_samples, n_concepts)
             with concept match probabilities.
         """
         match_X, doc_counts = self.match_and_extend(X)
@@ -338,7 +338,7 @@ class StwfsapyPredictor(BaseEstimator, ClassifierMixin):
         :params  X: Iterable of input strings.
 
         Returns:
-            A sparse array of shape (n_samples, n_concepts) 
+            A sparse array of shape (n_samples, n_concepts)
             indicating predicted concept matches.
         """
         match_X, doc_counts = self.match_and_extend(X)
