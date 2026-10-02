@@ -19,8 +19,9 @@ import pytest
 from rdflib import Graph
 from rdflib.namespace import SKOS
 from rdflib.term import Literal
-from scipy.sparse import csr_array, lil_array
+from scipy.sparse import csr_array, lil_array, sparray
 from sklearn.compose import ColumnTransformer
+from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.tree import DecisionTreeClassifier
 
 import stwfsapy.tests.common as c
@@ -632,3 +633,16 @@ def test_warning(mocker):
     logging_spy.warning.assert_called_once_with(
         'Could not process label "invalid_label" of concept "test_concept".'
     )
+
+
+def test_text_vector_without_vec():
+    predictor = p.StwfsapyPredictor(None, None, None, None, use_txt_vec=False)
+    assert predictor._text_vector("some text") == 0
+
+
+def test_text_vector_is_sparray():
+    predictor = p.StwfsapyPredictor(None, None, None, None, use_txt_vec=True)
+    predictor.text_vectorizer_ = TfidfVectorizer().fit(["some text", "other text"])
+    res = predictor._text_vector("some text")
+    assert isinstance(res, sparray)
+    assert res.shape == (1, 3)

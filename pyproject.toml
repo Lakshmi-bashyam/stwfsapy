@@ -12,7 +12,7 @@ classifiers = [
 ]
 dependencies=[
     "scipy>=1.16.2,<2.0",
-    "scikit-learn>=1.7.2,<2.0",
+    "scikit-learn>=1.9.1,<2.0",
     "rdflib~=7.5.0"
 ]
 
