@@ -1,4 +1,4 @@
-# Copyright 2020-2025 Leibniz Information Centre for Economics
+# Copyright 2020-2026 Leibniz Information Centre for Economics
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,8 +14,9 @@
 
 
 import pytest
-from stwfsapy import thesaurus as t
+
 import stwfsapy.tests.thesaurus.common as c
+from stwfsapy import thesaurus as t
 
 
 @pytest.fixture
@@ -23,7 +24,7 @@ def multi_lang_tuples():
     return [
         (c.concept_ref_insurance, c.concept_prefLabel_insurance_en),
         (c.concept_ref_insurance, c.concept_prefLabel_insurance_de),
-        (c.concept_ref_insurance, c.concept_prefLabel_insurance_missing)
+        (c.concept_ref_insurance, c.concept_prefLabel_insurance_missing),
     ]
 
 

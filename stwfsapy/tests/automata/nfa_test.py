@@ -1,4 +1,4 @@
-# Copyright 2020-2025 Leibniz Information Centre for Economics
+# Copyright 2020-2026 Leibniz Information Centre for Economics
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,6 +14,7 @@
 
 
 import pytest
+
 from stwfsapy.automata import nfa
 from stwfsapy.tests.automata.data import symbol0
 
@@ -32,12 +33,12 @@ def epsilon_tree():
     for _ in range(17):
         graph.add_state()
     for i in range(8):
-        graph.add_empty_transition(i, 2*i+1)
-        graph.add_empty_transition(i, 2*i+2)
-        graph.add_symbol_transition(i, 2*i+1, symbol0)
-        graph.add_symbol_transition(i, 2*i+2, symbol0)
-        graph.add_non_word_char_transition(i, 2*i+1)
-        graph.add_non_word_char_transition(i, 2*i+2)
+        graph.add_empty_transition(i, 2 * i + 1)
+        graph.add_empty_transition(i, 2 * i + 2)
+        graph.add_symbol_transition(i, 2 * i + 1, symbol0)
+        graph.add_symbol_transition(i, 2 * i + 2, symbol0)
+        graph.add_non_word_char_transition(i, 2 * i + 1)
+        graph.add_non_word_char_transition(i, 2 * i + 2)
     return graph
 
 

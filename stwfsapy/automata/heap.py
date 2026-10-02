@@ -1,4 +1,4 @@
-# Copyright 2020-2025 Leibniz Information Centre for Economics
+# Copyright 2020-2026 Leibniz Information Centre for Economics
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,7 +13,7 @@
 # limitations under the License.
 
 
-from typing import List, Dict, Tuple, Any, SupportsFloat
+from typing import Any, Dict, List, SupportsFloat, Tuple
 
 
 class BinaryMinHeap:
@@ -92,12 +92,12 @@ class BinaryMinHeap:
 
 
 def _parent_index(idx: int):
-    return (idx-1) // 2
+    return (idx - 1) // 2
 
 
 def _lchild_index(idx: int):
-    return 2*idx+1
+    return 2 * idx + 1
 
 
 def _rchild_index(idx: int):
-    return 2*idx+2
+    return 2 * idx + 2

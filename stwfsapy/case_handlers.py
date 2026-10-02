@@ -1,4 +1,4 @@
-# Copyright 2020-2025 Leibniz Information Centre for Economics
+# Copyright 2020-2026 Leibniz Information Centre for Economics
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,11 +15,7 @@
 
 def uncase_first_char(text: str) -> str:
     if text[0].isalpha():
-        return "({}|{}){}".format(
-            text[0].upper(),
-            text[0].lower(),
-            text[1:]
-            )
+        return "({}|{}){}".format(text[0].upper(), text[0].lower(), text[1:])
     else:
         return text
 
@@ -33,4 +29,4 @@ def sentence_case_handler(text: str) -> str:
 def title_case_handler(text: str) -> str:
     if text.isupper():
         return text
-    return ' '.join(map(uncase_first_char, text.split()))
+    return " ".join(map(uncase_first_char, text.split()))

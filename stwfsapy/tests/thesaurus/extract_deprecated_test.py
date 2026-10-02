@@ -1,4 +1,4 @@
-# Copyright 2020-2025 Leibniz Information Centre for Economics
+# Copyright 2020-2026 Leibniz Information Centre for Economics
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,6 +14,7 @@
 
 from rdflib.namespace import OWL
 from rdflib.term import Literal
+
 from stwfsapy import thesaurus as t
 from stwfsapy.tests.thesaurus import common as c
 

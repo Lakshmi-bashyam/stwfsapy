@@ -1,4 +1,4 @@
-# Copyright 2020-2025 Leibniz Information Centre for Economics
+# Copyright 2020-2026 Leibniz Information Centre for Economics
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,11 +14,11 @@
 
 
 import pytest
+
 from stwfsapy.automata import nfa
 
-
-symbol0 = 's'
-symbol1 = 't'
+symbol0 = "s"
+symbol1 = "t"
 accept = "Acceptance!"
 
 

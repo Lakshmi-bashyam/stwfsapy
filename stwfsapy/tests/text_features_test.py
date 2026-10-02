@@ -1,4 +1,4 @@
-# Copyright 2020-2025 Leibniz Information Centre for Economics
+# Copyright 2020-2026 Leibniz Information Centre for Economics
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,16 +13,19 @@
 # limitations under the License.
 
 
-from stwfsapy import text_features as tf
-from sklearn.exceptions import NotFittedError
-from stwfsapy.tests.upper_case_letters import upper_case_letters
 import pytest
+from sklearn.exceptions import NotFittedError
 
-_text = "abcdefghijklmnopqrstuvwxyzäöü" + \
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÜ" + \
-    " " + \
-    "0123456789" + \
-    "\"'?!()&%$"
+from stwfsapy import text_features as tf
+from stwfsapy.tests.upper_case_letters import upper_case_letters
+
+_text = (
+    "abcdefghijklmnopqrstuvwxyzäöü"
+    + "ABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÜ"
+    + " "
+    + "0123456789"
+    + "\"'?!()&%$"
+)
 
 
 def test_count_char():
@@ -110,4 +113,4 @@ def test_international_upper_case_recall():
 
 def test_international_upper_case_precision():
     for c in upper_case_letters:
-        assert 1 == tf._count_upper(f'xy{c}z')
+        assert 1 == tf._count_upper(f"xy{c}z")

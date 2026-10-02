@@ -1,4 +1,4 @@
-# Copyright 2020-2025 Leibniz Information Centre for Economics
+# Copyright 2020-2026 Leibniz Information Centre for Economics
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,20 +12,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import scipy.sparse as sp
 import numpy as np
+import scipy.sparse as sp
 from sklearn.base import BaseEstimator, TransformerMixin
 
 
 class PassthroughTransformer(BaseEstimator, TransformerMixin):
-    ''' Helper Class to better handle array input for ColumnTransformer.'''
+    """Helper Class to better handle array input for ColumnTransformer."""
 
     def fit(self, X, y=None):
         return self
 
     def transform(self, X, y=None):
         if sp.issparse(X[0]):
-            ret = sp.vstack(X, format='csr')
+            ret = sp.vstack(X, format="csr")
         else:
             ret = np.vstack(X)
         return ret

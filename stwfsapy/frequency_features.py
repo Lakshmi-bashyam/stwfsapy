@@ -1,4 +1,4 @@
-# Copyright 2020-2025 Leibniz Information Centre for Economics
+# Copyright 2020-2026 Leibniz Information Centre for Economics
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,11 +13,12 @@
 # limitations under the License.
 
 
-from collections import defaultdict, OrderedDict
+from collections import OrderedDict, defaultdict
+from math import log
+
+import numpy as np
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.exceptions import NotFittedError
-from math import log
-import numpy as np
 
 
 class FrequencyFeatures(BaseEstimator, TransformerMixin):
@@ -41,7 +42,7 @@ class FrequencyFeatures(BaseEstimator, TransformerMixin):
         self.log_doc_count_ = log(doc_count)
         idfs = dict()
         for concept, count in concept_counts.items():
-            idfs[concept] = log(doc_count/(count+1))
+            idfs[concept] = log(doc_count / (count + 1))
         self.idfs_ = idfs
         return self
 
@@ -59,11 +60,11 @@ class FrequencyFeatures(BaseEstimator, TransformerMixin):
             doc_concept_sum += concept_count
             if x[-1] == 1:
                 for concept, count in concept_counts.items():
-                    tf = count/doc_concept_sum
+                    tf = count / doc_concept_sum
                     idf = self.idfs_.get(concept, self.log_doc_count_)
                     ret[ret_ptr, 0] = tf
                     ret[ret_ptr, 1] = idf
-                    ret[ret_ptr, 2] = tf*idf
+                    ret[ret_ptr, 2] = tf * idf
                     ret_ptr += 1
                 doc_concept_sum = 0
                 concept_counts = OrderedDict()

@@ -1,4 +1,4 @@
-# Copyright 2020-2025 Leibniz Information Centre for Economics
+# Copyright 2020-2026 Leibniz Information Centre for Economics
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,9 +13,8 @@
 # limitations under the License.
 
 
-from rdflib.term import URIRef, Literal
 from rdflib.namespace import Namespace
-
+from rdflib.term import Literal, URIRef
 
 test_ref_type = URIRef("http://zbw.eu/stw/descriptor")
 ZBWEXT = Namespace("http://zbw.eu/namespaces/zbw-extensions/")
@@ -40,9 +39,7 @@ concept_prefLabel_insurance_de = Literal("Privatversicherung", lang="de")
 concept_prefLabel_insurance_missing = Literal("Privatversicherung")
 
 concept_altLabel_insurance_en = Literal("Mutual insurance", lang="en")
-concept_altLabelRelated_insurance_en = Literal(
-    "Insurance cooperative",
-    lang="en")
+concept_altLabelRelated_insurance_en = Literal("Insurance cooperative", lang="en")
 
 concept_prefLabel_it_en = Literal("Electronic identification", lang="en")
 concept_altLabelNarrower_it_en = Literal("Digital signature", lang="en")

@@ -1,4 +1,4 @@
-# Copyright 2020-2025 Leibniz Information Centre for Economics
+# Copyright 2020-2026 Leibniz Information Centre for Economics
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,4 +13,4 @@
 # limitations under the License.
 
 
-from stwfsapy.tests.automata.data import input_graph # noqa
+from stwfsapy.tests.automata.data import input_graph  # noqa

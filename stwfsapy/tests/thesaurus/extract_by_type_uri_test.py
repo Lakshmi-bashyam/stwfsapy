@@ -1,4 +1,4 @@
-# Copyright 2020-2025 Leibniz Information Centre for Economics
+# Copyright 2020-2026 Leibniz Information Centre for Economics
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -24,8 +24,9 @@ def test_extract_by_type_uri(typed_label_graph):
 
 
 def test_extract_by_type_uri_with_remove(typed_label_graph):
-    res = list(t.extract_by_type_uri(
-        typed_label_graph,
-        c.test_ref_type,
-        {c.concept_ref_insurance}))
+    res = list(
+        t.extract_by_type_uri(
+            typed_label_graph, c.test_ref_type, {c.concept_ref_insurance}
+        )
+    )
     assert res == [c.concept_ref_it]

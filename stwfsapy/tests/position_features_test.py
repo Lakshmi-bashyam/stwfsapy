@@ -1,4 +1,4 @@
-# Copyright 2020-2025 Leibniz Information Centre for Economics
+# Copyright 2020-2026 Leibniz Information Centre for Economics
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,9 +13,9 @@
 # limitations under the License.
 
 
-from stwfsapy.position_features import PositionFeatures
 import numpy as np
 
+from stwfsapy.position_features import PositionFeatures
 
 position_feature_data = [
     (3, [3, 4, 0, 2]),
@@ -35,8 +35,9 @@ def test_convert_docs():
     features = PositionFeatures()
     res = features.transform(position_feature_data)
     assert res.tolist() == [
-        [0/3, 4/3, 4/3],
-        [1/6, 23/6, 22/6],
-        [7/15, 36/15, 29/15],
-        [8/12, 102/12, 94/12],
-        [13/70, 13/70, 0]]
+        [0 / 3, 4 / 3, 4 / 3],
+        [1 / 6, 23 / 6, 22 / 6],
+        [7 / 15, 36 / 15, 29 / 15],
+        [8 / 12, 102 / 12, 94 / 12],
+        [13 / 70, 13 / 70, 0],
+    ]

@@ -1,4 +1,4 @@
-# Copyright 2020-2025 Leibniz Information Centre for Economics
+# Copyright 2020-2026 Leibniz Information Centre for Economics
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,12 +13,10 @@
 # limitations under the License.
 
 
-from typing import Set, Dict, Hashable, Tuple, List
+from typing import Dict, Hashable, List, Set, Tuple
 
 
-def set_closure(
-        sets: Dict[Hashable, Set[Hashable]]
-        ) -> Dict[Hashable, Set[Hashable]]:
+def set_closure(sets: Dict[Hashable, Set[Hashable]]) -> Dict[Hashable, Set[Hashable]]:
     """Computes the closure for each element of a antisymmetric relation.
     The relation is given by a mapping from elements
     to a set of related elements.

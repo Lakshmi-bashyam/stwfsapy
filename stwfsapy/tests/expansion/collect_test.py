@@ -1,4 +1,4 @@
-# Copyright 2020-2025 Leibniz Information Centre for Economics
+# Copyright 2020-2026 Leibniz Information Centre for Economics
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,8 +13,9 @@
 # limitations under the License.
 
 
-import stwfsapy.expansion as e
 from inspect import signature
+
+import stwfsapy.expansion as e
 
 _name_abbreviation_fun = e._expand_abbreviation_with_punctuation_fun.__name__
 _name_ampersand_fun = e._expand_ampersand_with_spaces_fun.__name__
@@ -28,10 +29,7 @@ _conf_keys = list(signature(e.collect_expansion_functions).parameters)
 
 
 def _create_config_map(lst):
-    return {
-        k: bool(int(v))
-        for k, v
-        in zip(_conf_keys, lst)}
+    return {k: bool(int(v)) for k, v in zip(_conf_keys, lst)}
 
 
 def test_combination_0000():

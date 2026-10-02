@@ -1,4 +1,4 @@
-# Copyright 2020-2025 Leibniz Information Centre for Economics
+# Copyright 2020-2026 Leibniz Information Centre for Economics
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,8 +13,8 @@
 # limitations under the License.
 
 
-from sklearn.base import BaseEstimator, TransformerMixin
 import numpy as np
+from sklearn.base import BaseEstimator, TransformerMixin
 
 
 class PositionFeatures(BaseEstimator, TransformerMixin):

@@ -1,4 +1,4 @@
-# Copyright 2020-2025 Leibniz Information Centre for Economics
+# Copyright 2020-2026 Leibniz Information Centre for Economics
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,27 +13,28 @@
 # limitations under the License.
 
 
+import pytest
 from numpy import array
 from rdflib.namespace import SKOS
-from stwfsapy import thesaurus as t
-from stwfsapy import thesaurus_features as tf
-from stwfsapy.tests.thesaurus import common as tc
-from stwfsapy.tests import common as c
 from scipy.sparse import coo_array, csr_array
 from sklearn.exceptions import NotFittedError
-import pytest
+
+from stwfsapy import thesaurus as t
+from stwfsapy import thesaurus_features as tf
+from stwfsapy.tests import common as c
+from stwfsapy.tests.thesaurus import common as tc
 
 
 def test_collect_po_from_tuples():
     tuples = [
         (tc.concept_ref_insurance, tc.concept_ref_it),
         (tc.concept_ref_it, tc.thsys_ref_it),
-        (tc.concept_ref_insurance, tc.thsys_ref_insurance)
+        (tc.concept_ref_insurance, tc.thsys_ref_insurance),
     ]
     po = tf._collect_po_from_tuples(tuples)
     assert po == {
         tc.concept_ref_insurance: {tc.concept_ref_it, tc.thsys_ref_insurance},
-        tc.concept_ref_it: {tc.thsys_ref_it}
+        tc.concept_ref_it: {tc.thsys_ref_it},
     }
 
 
@@ -46,23 +47,20 @@ def test_unfitted_raises():
 def test_transform():
     trans = tf.ThesaurusFeatureTransformation(None, None, None, None)
     trans.mapping_ = {
-        'a': coo_array([[1]]), 'b': coo_array([[2]]), 'c': coo_array([[3]])}
-    res = trans.transform(['c', 'c', 'a'])
+        "a": coo_array([[1]]),
+        "b": coo_array([[2]]),
+        "c": coo_array([[3]]),
+    }
+    res = trans.transform(["c", "c", "a"])
     assert (res.toarray() == array([[3], [3], [1]])).all()
 
 
 def test_fit(full_graph):
-    concepts = set(t.extract_by_type_uri(
-        full_graph,
-        c.test_type_concept))
-    thesauri = set(t.extract_by_type_uri(
-        full_graph,
-        c.test_type_thesaurus))
+    concepts = set(t.extract_by_type_uri(full_graph, c.test_type_concept))
+    thesauri = set(t.extract_by_type_uri(full_graph, c.test_type_thesaurus))
     trans = tf.ThesaurusFeatureTransformation(
-        full_graph,
-        concepts,
-        thesauri,
-        SKOS.broader)
+        full_graph, concepts, thesauri, SKOS.broader
+    )
     trans.fit()
     mapping = trans.mapping_
     assert len(mapping) == len(c.test_concepts)
@@ -86,15 +84,14 @@ def test_transform_unknown():
         None,
         None,
         None,
-        None,)
+        None,
+    )
 
     feature_dim = 12
     trans.feature_dim_ = feature_dim
     known = csr_array(([1], ([0], [4])), shape=(1, feature_dim))
-    trans.mapping_ = {'key': known}
-    random_results = trans.transform([
-        'some random stuff edsfysdfhjsedf',
-        'key'])
+    trans.mapping_ = {"key": known}
+    random_results = trans.transform(["some random stuff edsfysdfhjsedf", "key"])
     assert random_results.shape == (2, feature_dim)
     assert random_results[[0], :].nnz == 0
     assert random_results[[1], :].nnz == 1
@@ -108,6 +105,6 @@ def test_empty_relation(full_graph):
         "",
     )
     trans.fit([], [])
-    features = trans.transform(['empty'])
+    features = trans.transform(["empty"])
     assert features.shape == (1, 1)
     assert features.nnz == 0

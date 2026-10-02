@@ -1,4 +1,4 @@
-# Copyright 2020-2025 Leibniz Information Centre for Economics
+# Copyright 2020-2026 Leibniz Information Centre for Economics
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,7 +14,8 @@
 
 
 from collections import defaultdict
-from typing import Set, List, Any, DefaultDict
+from typing import Any, DefaultDict, List, Set
+
 from stwfsapy.automata.heap import BinaryMinHeap
 
 
@@ -85,26 +86,16 @@ class Nfa:
             ptr_idx = queue.pop()
             ptr = self.states[ptr_idx]
             if len(ptr.empty_transitions) > 0:
-                raise Exception(
-                    "There is an empty transition loop in the NFA.")
+                raise Exception("There is an empty transition loop in the NFA.")
             for incoming_idx in ptr.incoming_empty_transitions.copy():
                 incoming = self.states[incoming_idx]
-                self._remove_empty_transition(
-                    incoming_idx,
-                    incoming,
-                    ptr_idx,
-                    ptr)
+                self._remove_empty_transition(incoming_idx, incoming, ptr_idx, ptr)
                 if len(incoming.incoming_empty_transitions) > 0:
-                    queue.change_priority(
-                        incoming_idx,
-                        len(incoming.empty_transitions))
+                    queue.change_priority(incoming_idx, len(incoming.empty_transitions))
 
     def _remove_empty_transition(
-            self,
-            start_idx: int,
-            start: State,
-            end_idx: int,
-            end: State):
+        self, start_idx: int, start: State, end_idx: int, end: State
+    ):
         for symbol, states in end.symbol_transitions.items():
             for state_idx in states:
                 start.symbol_transitions[symbol].add(state_idx)

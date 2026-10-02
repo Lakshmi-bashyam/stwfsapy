@@ -1,4 +1,4 @@
-# Copyright 2020-2025 Leibniz Information Centre for Economics
+# Copyright 2020-2026 Leibniz Information Centre for Economics
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,13 +13,13 @@
 # limitations under the License.
 
 
-from enum import Enum
-from sklearn.base import BaseEstimator, TransformerMixin
-from sklearn.pipeline import FeatureUnion
-from sklearn.exceptions import NotFittedError
-import numpy as np
 import re
+from enum import Enum
 
+import numpy as np
+from sklearn.base import BaseEstimator, TransformerMixin
+from sklearn.exceptions import NotFittedError
+from sklearn.pipeline import FeatureUnion
 
 _NAME_VECTOR_FEATURE = "vectorizer"
 _NAME_CHAR_FEATURE = "n_chars"
@@ -30,13 +30,15 @@ _NAME_DIGIT_FEATURE = "n_digits"
 
 
 def mk_text_features():
-    return FeatureUnion([
-        (_NAME_CHAR_FEATURE, CountFeature(CountType.N_CHAR)),
-        (_NAME_WORD_FEATURE, CountFeature(CountType.N_WORD)),
-        (_NAME_SPECIAL_CHARS_FEATURE, CountFeature(CountType.N_SPECIAL)),
-        (_NAME_UPPER_FEATURE, CountFeature(CountType.N_UPPER)),
-        (_NAME_DIGIT_FEATURE, CountFeature(CountType.N_DIGIT)),
-    ])
+    return FeatureUnion(
+        [
+            (_NAME_CHAR_FEATURE, CountFeature(CountType.N_CHAR)),
+            (_NAME_WORD_FEATURE, CountFeature(CountType.N_WORD)),
+            (_NAME_SPECIAL_CHARS_FEATURE, CountFeature(CountType.N_SPECIAL)),
+            (_NAME_UPPER_FEATURE, CountFeature(CountType.N_UPPER)),
+            (_NAME_DIGIT_FEATURE, CountFeature(CountType.N_DIGIT)),
+        ]
+    )
 
 
 class CountType(Enum):

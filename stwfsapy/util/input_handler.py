@@ -1,4 +1,4 @@
-# Copyright 2020-2025 Leibniz Information Centre for Economics
+# Copyright 2020-2026 Leibniz Information Centre for Economics
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,8 +15,9 @@
 
 class UnknownInputTypeException(Exception):
     def __init__(self) -> None:
-        self.message = 'Unknown Input Format. Please specify' + (
-            ' "content", "file" or "filename".')
+        self.message = "Unknown Input Format. Please specify" + (
+            ' "content", "file" or "filename".'
+        )
         super().__init__(self.message)
 
 
@@ -34,10 +35,10 @@ def handle_filename(f_pth):
 
 
 def get_input_handler(input_type):
-    if input_type == 'content':
+    if input_type == "content":
         return handle_content
-    elif input_type == 'file':
+    elif input_type == "file":
         return handle_file
-    elif input_type == 'filename':
+    elif input_type == "filename":
         return handle_filename
     raise UnknownInputTypeException()
